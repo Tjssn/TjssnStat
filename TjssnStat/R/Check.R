@@ -36,6 +36,10 @@ check_install_and_load_silent <- function(packages) {
     if (pkg %in% c("stats", "utils", "base")) next
 
     # 静默加载（suppressAll隐藏所有输出）
-    suppressAll(library(pkg, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE))
+      suppressWarnings(
+      suppressMessages(
+        library(pkg, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)
+      )
+    )
   }
 }
